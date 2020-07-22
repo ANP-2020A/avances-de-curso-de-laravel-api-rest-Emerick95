@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Article extends Model
 {
-    protected $fillable=['title','body','category_id'];
+    protected $fillable=['title','body','category_id','image']; //add to column image
 
     //se ejecuta al momento de crear una instancia y auth coge el id
     public static function boot() {
