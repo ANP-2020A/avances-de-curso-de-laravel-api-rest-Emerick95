@@ -24,6 +24,7 @@ class Article extends JsonResource
             'updated_at' => $this->updated_at,
             'user' => "/api/users/". $this->user_id,
             'category' => "/api/users/". $this->category_id,
+            'image'=>$this->image,//para que devuelva la imagen
         ];
     }
 }
