@@ -17,6 +17,6 @@ class Cors
         return $next($request)
         ->header('Access-Control-Allow-Origin', '*') // el * permite a cualquiera pueda acceder a los recursos
         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')// con todos estos metodos pueden acceder
-        ->header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');//php
+        ->header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
     }
 }

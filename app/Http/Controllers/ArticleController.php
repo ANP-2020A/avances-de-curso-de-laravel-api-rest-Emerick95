@@ -15,10 +15,13 @@ class ArticleController extends Controller
         'body.required' => 'El body no es válido.',
     ];
     public function index(){
+        //$this->authorize('viewAny', Article::class); //pregunta si se tiene permiso.
         return new ArticleCollection(Article::paginate(2));
     }
 
     public function show(Article $article){
+
+        $this->authorize('view', $article);//necesita la instancia del articulo para ver si tiene o no permiso
         //para un articulo individual
         return response()->json(new ArticleResource($article),200);
     }
@@ -29,8 +32,9 @@ class ArticleController extends Controller
     }
 
     public function store(Request $request){
-        //Validacion de datos para insertar datos
 
+        $this->authorize('create', Article::class); //pregunta si se tiene permiso.
+        //Validacion de datos para insertar datos
         $request->validate([
             'title' => 'required|string|unique:articles|max:255',
             'body' => 'required',
@@ -50,6 +54,7 @@ class ArticleController extends Controller
 
     public function update(Request $request, Article $article){
 
+        $this->authorize('update',$article); //para saber si puede actualizar ese articulo en particular
         $request->validate([
             'title' => 'required|string|unique:articles,title,'.$article->id.'|max:255',
             'body' => 'required',
@@ -61,6 +66,7 @@ class ArticleController extends Controller
     }
 
     public function delete(Request $request, Article $article){
+        $this->authorize('delete',$article); //para saber si puede eliminar ese articulo en particular
         $article->delete();
         return response()->json(null, 204);
     }
