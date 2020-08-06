@@ -52,7 +52,7 @@ class CommentController extends Controller
     public function show(Article $article, Comment $comment)
     {
         $comment=$article->comments()->where('id',$comment->id)->firstOrFail();
-        return response()->json(new CommentResource($comment),200);
+        return response()->json(new CommentResources($comment),200);
     }
 
     /**
